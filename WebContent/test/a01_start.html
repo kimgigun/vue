@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--화면구성(View)
+머스태쉬 :  모델의 데이터 선언방식 {{모델 데이터}}
+-->
+
+<div id="simple">
+	<h2>{{msg}}</h2>
+</div>
+
+
+</body>
+<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+//모델 데이터 선언(Model)
+var model = {
+		msg:'첫번째 vue.js시작'
+};
+
+//MV 모델 뷰 선언
+//1) 형식 new Vue({속성:속성값, 메서드:function(){}.....});
+// -el(element) : view 단의 dom 객체 호출/선택
+// -data : model -  연결할 모델 데이터..
+var simple = new Vue({
+	el:"#simple",
+	data:model
+});
+</script>
+
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--기본연습 예제
+
+1. model 이름, 나이, 사는곳,
+2. view 화면에
+
+<h2> 이름 :@@@ </h2>
+<h2> 나이 :@@@ </h2>
+<h2> 사는곳:@@@ </h2>
+
+
+3.mv 로 vue 를 통해서 출력 되게 처리 하세요..
+-->
+
+<body>
+	<div id="info">
+		<h2>{{name}}</h2>
+		<h2>{{age}}</h2>
+		<h2>{{area}}</h2>
+	</div>
+</body>
+<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+var model = {name:'초롱이', age:7, area:'은평구'};
+
+var information = new Vue({
+	el:'#info',
+	data : model
+});
+</script>
+
+</head>
