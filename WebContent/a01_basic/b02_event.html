@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em;
+        width: 95%;
+    }
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript" src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<script type="text/javascript">
+/*
+*  # 이벤트처리
+*  1.기본형식
+*  1) <tag v-on:이벤트명="함수명"
+*  해당이벤트를 통하여 instance에서 선언된 model 과
+*  methods 안에 정의된 함수를 처리 할 수 있따.
+*
+*
+*/
+
+$(function(){
+ var vm = new Vue({
+	 el:".container",
+	 data:{
+		 amount:0,
+		 balance:0
+	 },
+	 methods:{
+		 deposit:function(){
+			 var amt = Number(this.amount);
+			 this.balance += amt;
+		 }
+	 }
+ });
+});
+</script>
+
+<body>
+<div class="container">
+	<h1></h1>
+	<table class="table table-hover table-striped">
+		<col width="50%">
+		<thead class="thead-light">
+			<tr><th>입금</th><th>누적 잔고</th></tr>
+		</thead>
+		<tr>
+			<td><input type="text" v-model="amount"/></td>
+			<td><input type="button" value="입금" v-on:click="deposit"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">총입금액:{{balance}}</td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>

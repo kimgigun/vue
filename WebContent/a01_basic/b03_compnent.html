@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em;
+        width: 95%;
+    }
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript" src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<template id="tmp01">
+	<div>안녕하세요1(템플릿id1 호출)</div>
+</template>
+<template id="tmp02">
+	<div>안녕하세요2(템플릿id2 호출)</div>
+</template>
+<script type="text/javascript">
+/*
+*	# Vue.component 사용
+*	1.dom 객체의 재사용과, 사용자 정의  component를 사용 할 수 있게 한다.
+*	2.선언과 활용
+*		1)Vue.component('컴포넌트명',{template:"사용될tag내용"});
+*		2)<template id="아이디명">
+*		<div>템플릿 태그</div>
+*		Vue.component("컴퍼넌트명",{template:"#아이디명"})
+*
+*/
+$(function(){
+		Vue.component("hello01",{template:
+			"<div><h3>좋은 하루 마감입니다.</h3><p>오늘 하루 어떻게 보내셨나요?</p></div>"});
+
+		Vue.component({"tempComp",{template:'#tmp01'});
+
+		var vm = new Vue({
+			el:".container"
+		});
+});
+
+</script>
+
+<body>
+</body>
+</html>
