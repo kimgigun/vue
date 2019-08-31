@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em;
+        width: 95%;
+    }
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<script type="text/javascript">
+/* v-model="모델데이터"
+1. 특정 모델데이터를 다른 요ㅕ소 객체와 동일하게 처리할 때, 활용된다,
+ex) 이름을 입력 하는 입력창 내용으로 h2에서도 그대로 입력하게 처리한다.
+
+2.형식
+	1)<input v-model="매핑된 model 속성">
+	2)<h2 v-text="매핑된 model 속성"></h2>
+
+*/
+ 	//model  데이터는 입력된 내용으로 되게 default 값으로 설정..
+$(function(){
+ 	var md = {name:"", age:0};
+ 	var vm = new Vue({
+ 		el:".container",
+ 		data:md
+ 	});
+});
+</script>
+
+<body>
+<div class="container">
+	<h1></h1>
+	<input type="text" v-model="name" placeholder="이름을 입력하세요" /><br>
+	<input type="text" v-model="age" placeholder="나이를 입력하세요" /><br>
+	<table class="table table-hover table-striped">
+		<col width="50%">
+		<col width="50%">
+		<thead class="thead-light">
+			<tr><th>이름</th><td v-text="name"></td></tr>
+			<tr><th>나이</th><td v-text="age"></td></tr>
+		</thead>
+	</table>
+</div>
+
+</body>
+</html>
