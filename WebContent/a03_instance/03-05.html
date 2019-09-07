@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>03-05</title>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="example">
+    x : <input type='text' v-model="x" /><br />
+    y : <input type='text' v-model="y" /><br />
+    덧셈 결과 : {{sum}}
+</div>
+
+<!--
+# watch
+1. model데이터의 요소와 연결된 v-model을 통해서 데이터 변경을
+	검사하고 있다가, 변경이 되는 순간, 해당 메서드를 호출하여
+	model값까지 변경하여 처리하는 것을 말한다.
+2. 주요 형식
+	1) model데이터 {데이터1:초기값, 데이터2:초기값, ...}
+	2) watch:{
+			데이터1:function(입력값){
+				입력값을 받아서 처리..
+				해당 데이터가 변경되는 순간 watch가 가동되어 수행 처리된다.
+
+			}
+		}
+ex) 물건명 :[    ]
+         가격 :[   ]
+          갯수:[   ] watch를 이용해서 해당 내용을 처리하는 순간
+	구매물품 : @@@  총계:@@ 를 출력 처리하세요.!!
+  -->
+
+
+<div id="ex1">
+	물건명: <input type="text" v-model="nm" /><br/>
+	가격: <input type="text" v-model="price" /><br/>
+	갯수: <input type="text" v-model="no"/><br/>
+	<!-- <input type="button" v-on:click="insert"/> -->
+	총계:{{totalPrice}}
+</div>
+
+
+<script type="text/javascript">
+var vm = new Vue({
+    el : "#example",
+    data : { x:0, y:0, sum:0 },
+    watch : {
+        x : function(v) {
+            console.log('## x 변경')
+            var result = Number(v) + Number(this.y);
+            if (isNaN(result)) this.sum = 0;
+            else this.sum = result;
+        },
+        y : function(v) {
+            console.log('## y 변경')
+            this.y = v;
+            var result = Number(this.x) + Number(v);
+            if (isNaN(result)) this.sum = 0;
+            else this.sum = result;
+        }
+    }
+})
+
+var m = {nm:"", price:0, no:5, totalPrice:0 };
+var v = new Vue({
+	el:"#ex1",
+	data: m ,
+	watch :{
+		price : function(p){
+			var result = Number(p) * Number(this.no);
+			result ? this.totalPrice = result : this.totalPrice = 0;
+		}
+	}
+});
+
+</script>
+</body>
+</html>
