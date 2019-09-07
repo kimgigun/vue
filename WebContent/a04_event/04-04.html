@@ -11,6 +11,13 @@
   </style>
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
+<!--
+
+# preventDefault
+1.태그에는 기본적인 이벤트를 처리해주는 내용이 있다.
+	1) <a href="이동할 페이지"> : 해당 페이지로 이동한다.
+	2) <form 하위의 <inpu type="submit : form 하위에 있는 데이터를 서버의 특정 페이지로 넘겨주는 처리">
+ -->
 <body>
 <div id="example" v-on:contextmenu.prevent="ctxStop">
     <a href="https://facebook.com" @click="confirmFB">페이스북</a>
@@ -23,6 +30,7 @@ var vm = new Vue({
 
         },
         confirmFB : function(e) {
+        	// confirm()에 취소 버튼을 누를때 페이지 이동을 방지한다.
             if (!confirm("페이스북으로 이동할까요?")) {
                 e.preventDefault();
             }

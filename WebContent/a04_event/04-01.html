@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>04-01</title>
-  <link rel="stylesheet" 
+  <link rel="stylesheet"
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
       .layout1 { margin:30px 30px 30px 30px; }
@@ -11,24 +11,64 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-<div id="example" class="container layout1">
+
+<!-- #이벤트처리
+	1.기본구조
+	1)v-on : 이벤트명 ==> @이벤트명 : 해당 요소 객체에 이벤트를 처리했을 때, 처리할 내용을 기술한다
+		ex)  v-on:click="함수 또는 처리할 모델데이터를 연산"
+
+ -->
+<!-- <div id="example" class="container layout1">
     <p><input type="text" v-model="amount" class="form-control" /></p>
     <p>
+
+    	balance += parseInt(amount)
+    	입력은 기본적으로 문자열로 입력되고 모델데이터도 입력값이 문자열로 인식한다.
+    	js +(연산자)만 자동형 변환을 해주지 않아서 balance += amount
+    	"12" + 12 ===> "1212" 으로 되버리기 때문에 형변환 메서드  parseInt() 나  Number()를 호출 하여야 한다.
+    	cf) "5"*"2" =  10
+
+
         <button id="deposit" @click="balance += parseInt(amount)"
           class="btn btn-primary">예금</button>
-        <button id="withdraw" @click="balance -= parseInt(amount)" 
+        <button id="withdraw" @click="balance -= parseInt(amount)"
           class="btn btn-primary">인출</button>
-    </p>            
+    </p>
     <h3>계좌 잔고 : {{balance}}</h3>
+</div> -->
+		<!--
+			도서 가격과 도서 수량을 입력받아
+			[계산] ==> 총계를 model데이터의 변수로 할당하여 출력하세요.
+			총계:@@@
+
+		 -->
+<div id="ex">
+<p>도서 가격입력: <input type="text" v-model="amount"/></p>
+<p>도서 수량입력: <input type="text" v-model="no"/></p>
+
+<button id="plus"  @click="balance += parseInt(amount)*parseInt(no)">추가</button>
+<button id="minus" @click="balance -= parseInt(amount)*parseInt(no)">제거</button>
+<p> 총금액 : {{balance}}</p>
 </div>
 <script type="text/javascript">
 var vm = new Vue({
   el : "#example",
   data : {
     amount : 0,
-    balance : 0,
+    balance : 0
   }
-})
+});
+
+/*ex*/
+var v = new Vue({
+	el:"#ex",
+	data:{
+		amount:0,
+		balance:0,
+		no:0
+	}
+});
+
 </script>
 </body>
 </html>

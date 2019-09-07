@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>04-03</title>
-  <link rel="stylesheet" 
+  <link rel="stylesheet"
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <style>
       .layout1 { margin:30px 30px 30px 30px; }
@@ -14,11 +14,19 @@
 <div id="example" class="container layout1">
     <p><input type="text" v-model="amount" class="form-control" /></p>
     <p>
-        <button id="deposit" v-on:click="deposit($event)" 
+
+    <!--
+    1.v-on : 이벤트명="함수명"
+    2.new Vue({
+    	methods:{함수명:function(){함수내용 호출..}}
+    });
+     -->
+
+        <button id="deposit" v-on:click="deposit($event)"
             class="btn btn-primary">예금</button>
-        <button id="withdraw" v-on:click="withdraw" 
+        <button id="withdraw" v-on:click="withdraw"
             class="btn btn-primary">인출</button>
-    </p>            
+    </p>
     <h3>계좌 잔고 : {{balance}}</h3>
 </div>
 
@@ -37,7 +45,7 @@ var vm = new Vue({
         } else {
             this.balance += amt;
         }
-    }, 
+    },
     withdraw : function(e) {
         var amt = parseInt(this.amount);
         if (amt <= 0) {
