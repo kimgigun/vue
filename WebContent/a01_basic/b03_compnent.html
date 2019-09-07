@@ -43,11 +43,18 @@ $(function(){
 		Vue.component("hello01",{template:
 			"<div><h3>좋은 하루 마감입니다.</h3><p>오늘 하루 어떻게 보내셨나요?</p></div>"});
 
-		Vue.component({"tempComp",{template:'#tmp01'});
+		Vue.component("tempComp",
+			{template:'#tmp01'}
+		);
+
+		 Vue.component('tmp-comp', {
+			    template : '#tmp01'
+	    })
 
 		var vm = new Vue({
 			el:".container"
 		});
+
 });
 
 </script>

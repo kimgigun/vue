@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>02-10</title>
+<style>
+    #list  { width: 400px; border:1px solid black; border-collapse:collapse; }
+    #list td, #list th { border:1px solid black;  text-align:center; }
+    #list > thead > tr { color:yellow; background-color: purple; }
+    .divider { height:2px; background-color: gray; }
+</style>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="exmaple">
+	<table id="list">
+		<thead>
+			<tr>
+                <th>번호</th><th>이름</th><th>전화번호</th><th>주소</th>
+            </tr>
+		</thead>
+        <tbody id="contacts">
+        <!--반복되는 code를 template 으로 처리하고 있다.
+        template v-for="(단위객체, index0~)" in 객체배열모델
+
+        ex) 모델 데이터는 students ({}번호,이름,국어,영어,수학 총계 데이터 출력)
+	        학생 3명의 데이터를 list 출력하세요.
+	        -->
+
+            <template  v-for="(contact, index) in contacts">
+            <tr>
+                <td>{{contact.no}}</td>
+                <td>{{contact.name}}</td>
+                <td>{{contact.tel}}</td>
+                <td>{{contact.address}}</td>
+            </tr>
+            <tr class="divider" v-if="index % 5===4">
+                <td colspan="4"></td>
+            </tr>
+            </template>
+        </tbody>
+	</table>
+    </div>
+
+    <div id="ex2">
+	<table id="list">
+		<thead>
+			<tr>
+                <th>번호</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th><th>총</th><th>avg</th>
+            </tr>
+		</thead>
+
+      <!--   <tbody>
+        	<template v-for="(val,index) in score">
+        		<tr>
+        			<td>{{val.번호}}</td>
+	        		<td>{{val.이름}}</td>
+	        		<td>{{val.국어}}</td>
+	        		<td>{{val.영어}}</td>
+	        		<td>{{val.수학}}</td>
+	        		<td>{{val.국어+val.영어+val.수학}}</td>
+	        		<td>{{Math.floor((val.국어+val.영어+val.수학)/3)}}</td>
+        		</tr>
+        	</template>
+        </tbody> -->
+
+        <tbody>
+        	<template v-for="(val,index) in score">
+        		<tr>
+        			<td>{{index+1}}</td>
+	        		<td>{{val.이름}}</td>
+	        		<td>{{val.국어}}</td>
+	        		<td>{{val.영어}}</td>
+	        		<td>{{val.수학}}</td>
+	        		<td>{{val.국어+val.영어+val.수학}}</td>
+	        		<td>{{((val.국어+val.영어+val.수학)/3).toFixed(1)}}</td>
+        		</tr>
+        	</template>
+        </tbody>
+	</table>
+    </div>
+    <script type="text/javascript">
+    var model = {
+        "pageno": 1,
+        "pagesize": 10,
+        "totalcount": 100,
+        "contacts": [
+            { "no": 100,"name": "설현", "tel": "010-3456-8299", "address": "서울" },
+            { "no": 99, "name": "혜리", "tel": "010-3456-8298", "address": "서울" },
+            { "no": 98, "name": "하니", "tel": "010-3456-8297", "address": "경기" },
+            { "no": 97, "name": "성소", "tel": "010-3456-8296", "address": "제주" },
+            { "no": 96, "name": "지아", "tel": "010-3456-8295", "address": "서울" },
+            { "no": 95, "name": "정연", "tel": "010-3456-8294", "address": "강원" },
+            { "no": 94, "name": "쯔위", "tel": "010-3456-8293", "address": "경기" },
+            { "no": 93, "name": "사나", "tel": "010-3456-8292", "address": "서울" },
+            { "no": 92, "name": "모모", "tel": "010-3456-8291", "address": "충남" },
+            { "no": 91, "name": "소진", "tel": "010-3456-8290", "address": "서울" }
+        ]
+    }
+
+    var sModel = {
+            "score": [
+                { "번호": 1,"이름":"일군" ,"국어":70, "영어":80, "수학":90, "total":"", "평균:":"" },
+                { "번호": 1,"이름":"이군" ,"국어":30, "영어":10, "수학":30, "total":"", "평균:":"" },
+                { "번호": 1,"이름":"삼군" ,"국어":70, "영어":40, "수학":60, "total":"", "평균:":"" },
+                { "번호": 1,"이름":"사군" ,"국어":50, "영어":60, "수학":60, "total":"", "평균:":"" }
+            ]
+        }
+
+    var list = new Vue({
+        el : "#exmaple",
+        data : model
+    });
+
+    var list2 = new Vue({
+        el : "#ex2",
+        data : sModel
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>02-09</title>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+
+<!--
+# v-for를 통한 반복 렌더링 처리..
+1. tag v-for="단위객체 in 모델(배열)
+	1) 모델에서 배열객체([{속성:속성값},{...},{..}]를 반복적 화면에 랜더링하여 표현할 때,
+		활용된다.
+	ex) var model = {students:[{no:1,name:"홍길동",kor:80},{},{}]}
+	     <tr v-for="stud in students">  학생배열의 학생단위 객체를 처리..
+			<td>{{stud.no}}</td>
+			<td>{{stud.name}}</td> 학생의 이름 속성값 출력
+			<td>{{stud.kor}}</td>
+
+2. tag v-for="속성의value, 속성의 key in 모델객체"
+	1) 모델에서 객체가 key,value형식으로 설정되어 있을 때, 활용하는 반복처리 구문이다.
+	ex) var model = {regions:{a:"asia",b:"America",c:"Europe"}}
+		<option v-for="(val,key,index) in regions" :value="key" >{{val}}</option>
+		반복문을 통해서  model데이터의 순서( index 0,1... {key:val,key:val} )
+		, 속성과 값을 가져온다.
+ex) type을 radio로 처리하여  성별   ()남  ()여 처리로 단일 선택할 수 있게 출력하세요.
+	M(남) F(여)
+ -->
+	<div id="exmaple">
+        <select id="regions">
+            <option disabled="disabled" selected>지역을 선택하세요</option>
+            <option v-for="(val, key, index) in regions" v-bind:value="key" v-text="val"></option>
+        </select>
+    </div>
+
+    <div id="ex2">
+    	<span v-for="(val, key, index) in gender">
+    		<input type="radio" v-bind:value="key" name="group"/>{{val}}
+    	</span>
+    </div>
+
+
+    <script type="text/javascript">
+    var regions = {
+        "A" : "Asia",
+        "B" : "America",
+        "C" : "Europe",
+        "D" : "Africa",
+        "E" : "Oceania"
+    };
+
+    var list = new Vue({
+	        el : "#exmaple",
+	        data : { regions : regions }
+
+    });
+
+    var ml = {M:"남", F:"여"};
+
+    var v = new Vue({
+	        el : "#ex2",
+	        data : {gender : ml}
+
+    });
+
+    </script>
+</body>
+</html>
