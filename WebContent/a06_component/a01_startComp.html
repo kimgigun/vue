@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>컴포넌트예제</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<template id='showTmp'>
+    <div>
+        <button v-on:click="showClick">현재 시간</button>
+        <span>{{current}}</span>
+    </div>
+</template>
+
+<script type="text/javascript">
+/*
+# component의 속성과 메서드..
+1. template : 해당 컴포넌트 tag로 설정할 내용
+2. data : 컴포넌트에서 사용할 데이터 부분으로
+	함수로 데이터를 객체로 리턴하여야 한다. 
+	return {속성:속성값}
+	-- 해당 데이터는 컴포넌트에서 호출하여 속성으로 사용할 수 있다.
+3. 	methods:{메서드명:function(){}} :
+	-- 이벤트로 컴포넌트에 사용할 함수를 정의 한다.
+
+ex) [현재 시간 확인] 2019년 @@월 @@일 @@시 @@분 @@초
+	getFullYear(), getMonth()+1, getDate(), getHours()
+	getMinutes(), getSeconds()
+	
+ */
+
+Vue.component('date-time-comp', {
+    template : '#showTmp',
+    data : function() {
+        return { current : '' };
+    },
+    methods : {
+    	showClick : function(e) {
+    		var today = new Date();
+    		var show=today.getFullYear()+"년 ";
+    		show+=(today.getMonth()+1)+"월 ";
+    		show+=(today.getDate())+"일 ";
+    		show+=(today.getHours())+"시 ";
+    		show+=(today.getMinutes())+"분 ";
+    		show+=(today.getSeconds())+"초 ";
+            this.current = show;
+        }
+    }
+})
+</script>
+<body>
+    <div id="app">
+        <date-time-comp></date-time-comp>
+        <date-time-comp></date-time-comp>
+        <date-time-comp></date-time-comp>
+        <date-time-comp></date-time-comp>
+    </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var v = new Vue({
+    el : '#app'
+})
+</script>
+</html>

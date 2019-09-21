@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-04</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<!-- 
+# 컴포넌트 조합
+1. 컴포넌트들을 조합해서 전체 애플리케이션을 작성..
+2. 컴포넌트는 부보/자식 관계로 트리 구조로 형석된다.
+	1) 속성(props)를 통해 자식 컴포넌트에  정보를 전달하고,
+		이벤트(emit)를 통해 부모 컴포넌트에 정보를 전달한다.
+	2) 단방향 : 부모에서  자식으로
+		양방향 :   부모와 자식 상호간에 전달..
+3. 메서드 선언.
+	1) Vue.component("사용자정의 태그",options)
+	2) 사용자정의 태그 : 컴포넌트를 사용할 태그명을 지정..
+	3) options : 컨포넌트에 랜더링할 template를 지정한다.
+4. 기본 형식.
+	1) Vue.component("my-comp",{template:"<div>호출</div>"});
+	2) <template id="아이디선언">
+			<div>선언 내용</div>
+		Vue.component("my-comp",{template:"#선언한아이디"});
+	
+ -->
+<template id="helloTemplate">
+    <div>hello world!!!</div>
+</template>
+<script type="text/javascript">
+  Vue.component('hello-component', {
+    template : '#helloTemplate'
+  })
+</script>
+<body>
+  <div id="app">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+  </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var v = new Vue({
+  el : '#app'
+})
+</script>
+</html>

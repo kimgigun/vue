@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-05</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<!-- 
+1. template 중에  script type="text/x-template" id="아이디명"
+	으로 선언이 가능하다.
+2. template 문자열 안에 루트 요소는 반드시 하나이어야 한다.	
+	- 여러 요소를 가질 지라도 root는 반드시 단일
+ -->
+<script type="text/x-template" id="helloTemplate">
+	<div>
+    	<div>hello world!!!</div>
+    	<div>hello world!!!</div>
+    	<div>hello world!!!</div>
+	</div>
+</script>
+<script type="text/javascript">
+  Vue.component('hello-component', {
+    template : '#helloTemplate'
+  })
+</script>
+<body>
+  <div id="app">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+  </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var v = new Vue({
+  el : '#app'
+})
+</script>
+</html>

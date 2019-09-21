@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-12</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<template id="listTemplate">
+    <li>{{message}}</li>
+</template>
+<script type="text/javascript">
+Vue.component('list-component', {
+    template : '#listTemplate',
+    props : [ 'message' ]    
+})
+</script>
+<body>
+<!-- 
+1. 부모로 부터 하위의 템플릿에 데이터 전송하기..
+	1) 최상위 부모 요소객체에 속성값을 지정.
+		컴포넌트명  속성=속성값
+	2) Vue.component의 속성  prop에서 
+		['상위부모에서 선언할 속성1','속성2'....]
+	3) 하위에 자식 template의 태그에
+		해당 속성명  tag 속성=prop속성1 
+				{{prop속성}}
+ex) props로 속성을 선언하고 출력 처리하세요..
+h3 안녕하세요
+h3 good morning
+h3 hello
+					
+ -->
+<div id="app">
+    <ul>
+        <list-component message="Hello"></list-component>
+        <list-component message="씬짜오"></list-component>
+        <list-component message="니하오마"></list-component>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var vm = new Vue({
+    el : "#app"
+})
+</script>
+</html>
