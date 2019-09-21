@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    .show{width:100%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em; 
+        width: 95%;
+    }    
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript" 
+	src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>	
+<script src="../a00_com/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("h1").html("물품 구매").attr("align","center");
+		var vm = new Vue({
+			el:".container",
+			data:{name:"",
+				  price:0,
+				  cnt:0,
+				  tot:0,
+				  show:""},
+			methods:{
+				buy:function(){
+					// 총계 계산처리..
+					this.tot=this.price*this.cnt;
+					// show 속성을 통해서 화면에 출력내용 정리..
+					this.show=this.name+"를   "+this.price+"원에 "
+						+this.cnt+"개 구매하여 총비용이 "+this.tot+"원 ";
+						
+				}
+			}
+		});
+	});
+</script>
+<!-- 
+ex) 아래와 같이 화면을 구성하고 vue를 통하여 이벤트를 처리하세요.
+
+물건명[     ]
+가격  [     ]
+갯수  [     ]
+    [구매] ==> 구매 클릭시 아래와 같이 수행 처리.
+@@@를   @@@원에 @@@개 구매하여
+총비용이 @@@ 원    
+
+ -->
+</head>
+<body>
+<div class="container">
+    <h1></h1>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">물건명</span>
+		</div>
+		<input type="text"  v-model="name" class="form-control" name="name" placeholder="이름입력"/>
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">가격</span>
+		</div>
+		<input type="text" v-model="price" class="form-control" name="price" placeholder="가격입력"/>
+	</div>	
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">갯수</span>
+		</div>
+		<input type="text"  v-model="cnt" class="form-control" name="cnt" placeholder="갯수"/>
+	</div>		
+	<div style="text-align:center;">
+		<input  type="button" id="btn01"
+			@click="buy"
+		 class="btn btn-primary" value="구매" />
+	</div>  
+	<br>
+	<div class="input-group mb-3">
+		<!--  v-show="show!=''" : 모델 show가 있을 때만, 출력 처리.. -->
+		<div class="input-group-prepend show">
+			<span class="input-group-text" 
+				v-show="show!=''">{{show}}</span>
+		</div>		
+	</div>  
+</div>
+</body>
+
+</html>

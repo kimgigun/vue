@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>04-11</title>
+  <style>
+   html, body { margin: 0;padding: 0; }
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="exampledd" v-on:contextmenu.prevent="ctxStop"  @mouseup.left="leftMouse" @mouseup.right="rightMouse" >
+	<div>left key : 왼쪽 <br/>
+		 right key : 오른쪽
+	</div>
+	<input type="text" @keyup="up" />
+</div>
+<script>
+
+	var v = new Vue({
+		el:'#exampledd',
+		data : {
+		      pos : { left : 100, top:100 }
+		    },
+	    methods: {
+	        ctxStop : function(e) { },
+	        leftMouse : function(e) {
+	          /* if (this.pos.left > 30)
+	            this.pos.left -= 30; */
+	            console.log("Move Left!!");
+	        },
+	        rightMouse : function(e) {
+	          /* this.pos.left += 30; */
+	          console.log("Move Right!!");
+	        },
+	        up: function(e){
+	        	console.log("dddd!!");
+		    }
+	    }
+
+	});
+</script>
+</body>
+</html>

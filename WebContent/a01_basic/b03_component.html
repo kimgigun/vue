@@ -9,18 +9,49 @@
     .input-group-text{width:100%;}
     .input-group-prepend{width:30%;}
     input[type="text"], label {
-        margin-bottom: 12px; padding: .4em;
+        margin-bottom: 12px; padding: .4em; 
         width: 95%;
-    }
+    }    
 </style>
 
 <script src="../a00_com/jquery.min.js"></script>
 <script src="../a00_com/popper.min.js"></script>
 <script src="../a00_com/bootstrap.min.js"></script>
-<script type="text/javascript"
+<script type="text/javascript" 
 	src="../a00_com/jquery-3.4.1.js"></script>
-<script  src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>	
 <script src="../a00_com/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("h1").html("Component 시작");
+/* 		
+# Vue.component 사용!!
+1. dom객체의 재사용과, 사용자 정의 component를 사용할 수 있게 한다.
+2. 선언과 활용
+	1) Vue.component("컴포넌트명",{template:"사용될 tag내용"});
+	2) <template id="아이디명">
+			<div>탬플릿 태그</div>
+	   Vue.component("컴포넌트명",{templdate:"#아이디명"})		
+			
+*/		
+		Vue.component("hello01",{template:
+			"<div><h3>좋은 하루 마감입니다!!</h3><p>오늘 하루 어떻게 보냈나요?</p></div>"});
+		  Vue.component('hello-component', {
+			    template : '#helloTemplate'
+			  });
+		  Vue.component('tmp-comp', {
+			    template : '#tmp01'
+			  })		  
+		
+		
+		var vm = new Vue({
+			el:".container"
+		});
+		
+		
+	});
+</script>
 
 </head>
 <template id="helloTemplate">
@@ -45,45 +76,10 @@
 		<col width="100%">
 		<thead class="thead-light">
 			<tr><th>타이틀</th></tr>
-		</thead>
+		</thead>	
 		<tr><td>내용1</td></tr>
-	</table>
+	</table>       
 </div>
 </body>
 
 </html>
-
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("h1").html("Component 시작");
-/*
-# Vue.component 사용!!
-1. dom객체의 재사용과, 사용자 정의 component를 사용할 수 있게 한다.
-2. 선언과 활용
-	1) Vue.component("컴포넌트명",{template:"사용될 tag내용"});
-	2) <template id="아이디명">
-			<div>탬플릿 태그</div>
-	   Vue.component("컴포넌트명",{templdate:"#아이디명"})
-
-*/
-		  Vue.component("hello01",{
-				template:
-			"<div><h3>좋은 하루 마감입니다!!</h3><p>오늘 하루 어떻게 보냈나요?</p></div>"});
-
-		  Vue.component('hello-component', {
-			    template : '#helloTemplate'
-			  });
-
-		  Vue.component('tmp-comp', {
-			    template : '#tmp01'
-			  })
-
-
-		var vm = new Vue({
-			el:".container"
-		});
-
-
-	});
-</script>

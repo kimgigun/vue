@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="show">
+		<h2>속성값 바이딩 처리 (v-bind)</h2>
+		<input name="name01" type="text" 
+			v-bind:value="name"/><br>
+		<img v-bind:src="imagePath"/>	
+	</div>
+</body>
+<script type="text/javascript" 
+	src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+	// http://sample.bmaster.kro.kr/photos/61.jpg
+	// 1. model데이터 설정..
+	var md = {name:"홍길동",imagePath:
+		"http://sample.bmaster.kro.kr/photos/61.jpg"};
+	// 2. view model 설정..
+	var vm = new Vue({
+		el:"#show",
+		data:md
+	});
+	// ex)                    로그인
+	//      table   아이디 : [아이디입력하세요 ]
+	//      table   패스워드 : [패스워드입력하세요 ]
+	//               [로그인]-버튼
+	//    label(title) 내용과 value를 model데이터로 설정하고, 뷰의 directive
+	//    이용하여 출력 처리하세요..
+
+// v-bind:속성 - html 태그의 고유 속성으로 데이터와 모델링 처리..
+// 1)  기본 형식 :  v-bind:속성="모델"
+///   	ex) v-bind:value="message"
+//          input에서 value값을 지정해서 모델 데이터의 message 연결 처리.
+
+
+
+</script>
+</html>

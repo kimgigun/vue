@@ -6,32 +6,27 @@
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
+
+
 <div id="example">
     <input type="text" v-model="num" /><br />
     1부터 입력된 수까지의 합 : <span>{{sum()}}</span>
 </div>
 <script type="text/javascript">
-
-/* view mode의 methods 속성 선언하기..
- *
- 	1.기본형식
- 	methods:{
- 		함수명:function(){
- 			처리후,,
- 			return 할데이터
- 		}
- 	}
- 	정의된 함수는 directive나 {{}} 형식으로 함수명()로 호출하여 사용된다.
- *
- *
- *
- *
- *
- *
- *
- */
-
 //1부터 입력된 수까지의 합구하기
+/* 
+# view mode의 methods 속성 선언하기..
+1. 기본 형식
+	methods:{
+		함수명:function(){
+			처리 후,,
+			return 리턴할데이터;
+		}
+	}
+	정의된 함수는  directive나 {{}}형식으로  함수명()로 호출하여
+	사용된다.
+
+ */
 var vmSum = new Vue({
     el : "#example",
     data : { num : 0 },

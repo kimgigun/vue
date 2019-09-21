@@ -4,51 +4,45 @@
   <meta charset="utf-8">
   <title>02-01</title>
 </head>
-
-<!--
-
-  #MVVM 패턴
-
-  1.View : html기본 화면단에 대한 처리를 말한다.
-      보통tag 로 구성되어 directive의 속성을 설정한다.
-      식별자인 tag, id, class 를 지정하여 viewModel 에서 호출한다.
-
-  2.model: html 화면에서 처리할 데이터를 json 형식으로 선언한 것을 말한다.
-  json 형식-{속성:속성값,,...}[{속성:속성값,,,}]
-  View 에서 directive 나 {{}} 로 속성을 호출하여 속성값을 처리한다.
-
-  3.ViewModel : 실제로 vue 객체를 생성하여 , View 와 Model 를 연결시키는 역할을 한다.
-    var vm = new Vue({속성:속성값, 속성:속성값, 메서드:function(){}});
-
-    1) ViewModel 에서 사용되는 속성 (사실은 mvc 모델의 controll 역활을 함)
-    -el : "tag/#아이디/.클래스" : selector 형식으로 view 의 특정 요소를 선택하여 준다.
-    -data: model데이터를 호출/선언
-
-
--->
-
+<!-- 
+# MVVM패턴
+1. View : html기본 화면단에 대한 처리를 말한다.
+	보통 tag로 구성되어  directive의 속성을 설정한다.
+	식별자인 tag, id, class를 지정하여  ViewModel에서 호출한다.
+2. Model : html 화면에서 처리할 데이터를 json형식으로 선언한 것을 말한다.
+	json형식 - {속성:속성값,....} [{속성:속성값....}{}]
+	view에서 directive나 {{}}로 속성을 호출하면 속성값을 처리한다.
+3. ViewModel : 실제로 Vue객체를 생성하여, View와 Model연결시키는 역할을
+	한다. var vm = new Vue({속성:속성값, 속성:속성값, 메서드:function(){} });
+	1) ViewModel에서 사용되는 속성
+		- el : "tag/#아이디/.클래스" :selector형식으로 view의 특정 요소를
+			선택하여 준다.
+		- data : model데이터 호출/선언 : view에서 사용할 model데이터를 json으로
+			선언한다.	
+ -->
 <body>
   <div id="simple">
-    <!-- {{}} : mustache expression으로 directive의 한 형시으로 v-text 와 동일 내용을 처리한다.
-       직접적으로 textnode  에서 출력 될 것을 처리하기 때문에 직관적으로 알수 있다. -->
+  	<!-- {{}} : mustache expression으로 directive의 한 형식으로 v-text와 동일
+  		내용을 처리한다. 직접으로 textnode에서 출력될 것을 처리하기 때문에 직관적인
+  		처리에 도움이 된다.-->
     <h2>{{message}}</h2>
   </div>
-  <!-- 활용하는  vue  lib 호출 -->
+  <!-- 활용하는 vue lib 호출 -->
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
   <script type="text/javascript">
+  // model 데이터 선언..
     var model = {
       message : '첫번째 Vue.js 앱 입니다!'
     };
-
+	// viewmodel 선언  
     var simple = new Vue({
       el : '#simple',
       data : model
     })
-
-    // ex)1 사원등록 현황
-    //  이름 :@@@
-    //  부서 :@@@
-    //  직책 :@@@
+	// ex1)  사원 등록 현황
+	//       이름  : @@@
+	//       부서  : @@@
+	//       직책  : @@@
   </script>
 </body>
 </html>

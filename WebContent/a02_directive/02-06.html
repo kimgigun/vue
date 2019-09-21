@@ -6,50 +6,29 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-
-  <!--
-
-    # v-show 모델조건
-
-  1.해당 모델의 조건이  true 일때 처리되어 나타나는 내용을 말한다.
-    -특정 조건에 해당할 떄만 해당 tag를 출력 처리할때 활용된다.
-
-  2.처리순서...
-  1)입력되는 form 하위에 요소객체에 속성값에 model을 v-model 로 선언
-  2)나타나거나 보이지 않을 부분에 v-show 라는 속성에 model 의 boolean을 처리힌다.
-
-
-  ex1) 성인 인증 처리 여부
-  나이[] span ==> 미성년자 입니다.
-
-  ex2) 회원가입id 유효성 check
-  등록할 id : [] span 으로 유효한 아이디가 아닙니다.
-
-
-
-  -->
   <div id="account">
+  
     예금액 : <input type="text" v-model="amount" />
-    <img v-show="amount < 0" src="http://sample.bmaster.kro.kr/img/error.png"
+<!-- 
+# v-show="모델 조건" 
+1. 해당 모델의 조건이 true일 때에 처리되어 나타나는 내용을 말한다.
+	- 특정 조건에 해당할 때만 해당 tag를 출력 처리할때 활용된다.
+2. 처리 순서..
+	1) 입력되는 form 하위에 요소객체에  속성값에 model을 v-model로 선언..
+	2) 나타나거나 보이지 않을 부분에 v-show라는 속성에  model의 boolean을 처리한다.
+ex1) 성인 인증 처리 여부
+	나이 [ ]	 span ==> 미성년자 입니다.
+ex2) 회원 가입 id 유효성 check
+	 등록할 id : [    ] span으로  유효한 아이디가 아닙니다
+			
+	
+ -->    
+    
+    
+    <img v-show="amount < 0" src="http://sample.bmaster.kro.kr/img/error.png" 
         title="마이너스는 허용하지 않습니다"
         style="width:15px; height:15px; vertical-align:middle" />
   </div>
-
-  <div id="ex1">
-  나이: <input type="text" v-model="age" />
-  <img v-show="age.length > 0 && age < 19" src="http://sample.bmaster.kro.kr/img/error.png"
-   title="미성년자 입니다"
-   style="width:15px; height:15px; vertical-align:middle"/>
-  </div>
-
-  <div id="ex2">
-  아이디: <input type="text" v-model="id" />
-    <img v-show="id.length > 0 && id.length < 5 || id.length > 8" src="http://sample.bmaster.kro.kr/img/error.png"
-    title="5~8 자리만 유효합니다"
-    style="width:15px; height:15px; vertical-align:middle"/>
-  </div>
-
-
   <script type="text/javascript">
   var simple1 = new Vue({
     el : '#account',
@@ -57,21 +36,6 @@
         amount : 0
     }
   })
-
-  var ex1 = new Vue({
-    el:'#ex1',
-    data:{
-      age:''
-    }
-  });
-
-  var ex2 = new Vue({
-    el:'#ex2',
-    data:{
-      id:''
-    }
-  });
-
   </script>
 </body>
 </html>

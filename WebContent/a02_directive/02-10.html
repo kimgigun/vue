@@ -20,13 +20,12 @@
             </tr>
 		</thead>
         <tbody id="contacts">
-        <!--반복되는 code를 template 으로 처리하고 있다.
-        template v-for="(단위객체, index0~)" in 객체배열모델
-
-        ex) 모델 데이터는 students ({}번호,이름,국어,영어,수학 총계 데이터 출력)
-	        학생 3명의 데이터를 list 출력하세요.
-	        -->
-
+        	<!-- 
+        	반복되는 code를 템플릿형태로 처리하고 있다.
+        	template v-for="(단위객체,index0~) in 객체배열모델..
+        	ex) 모델 데이터는 students ({}번호,이름, 국어,영어,수학, 총계, 평균)
+        	학생 3명의 데이터를 list 출력하세요
+        	 -->
             <template  v-for="(contact, index) in contacts">
             <tr>
                 <td>{{contact.no}}</td>
@@ -41,45 +40,8 @@
         </tbody>
 	</table>
     </div>
-
-    <div id="ex2">
-	<table id="list">
-		<thead>
-			<tr>
-                <th>번호</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th><th>총</th><th>avg</th>
-            </tr>
-		</thead>
-
-      <!--   <tbody>
-        	<template v-for="(val,index) in score">
-        		<tr>
-        			<td>{{val.번호}}</td>
-	        		<td>{{val.이름}}</td>
-	        		<td>{{val.국어}}</td>
-	        		<td>{{val.영어}}</td>
-	        		<td>{{val.수학}}</td>
-	        		<td>{{val.국어+val.영어+val.수학}}</td>
-	        		<td>{{Math.floor((val.국어+val.영어+val.수학)/3)}}</td>
-        		</tr>
-        	</template>
-        </tbody> -->
-
-        <tbody>
-        	<template v-for="(val,index) in score">
-        		<tr>
-        			<td>{{index+1}}</td>
-	        		<td>{{val.이름}}</td>
-	        		<td>{{val.국어}}</td>
-	        		<td>{{val.영어}}</td>
-	        		<td>{{val.수학}}</td>
-	        		<td>{{val.국어+val.영어+val.수학}}</td>
-	        		<td>{{((val.국어+val.영어+val.수학)/3).toFixed(1)}}</td>
-        		</tr>
-        	</template>
-        </tbody>
-	</table>
-    </div>
     <script type="text/javascript">
+    // 모델의 contacts를 통해서 객체형배열([{},{}..])을 설정..
     var model = {
         "pageno": 1,
         "pagesize": 10,
@@ -98,23 +60,9 @@
         ]
     }
 
-    var sModel = {
-            "score": [
-                { "번호": 1,"이름":"일군" ,"국어":70, "영어":80, "수학":90, "total":"", "평균:":"" },
-                { "번호": 1,"이름":"이군" ,"국어":30, "영어":10, "수학":30, "total":"", "평균:":"" },
-                { "번호": 1,"이름":"삼군" ,"국어":70, "영어":40, "수학":60, "total":"", "평균:":"" },
-                { "번호": 1,"이름":"사군" ,"국어":50, "영어":60, "수학":60, "total":"", "평균:":"" }
-            ]
-        }
-
     var list = new Vue({
         el : "#exmaple",
         data : model
-    });
-
-    var list2 = new Vue({
-        el : "#ex2",
-        data : sModel
     });
     </script>
 </body>

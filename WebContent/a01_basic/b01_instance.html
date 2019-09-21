@@ -3,71 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-
-<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <link rel="stylesheet" href="../a00_com/bootstrap.min.css">
 <link rel="stylesheet" href="../a00_com/jquery-ui.css">
 <style type="text/css">
     .input-group-text{width:100%;}
     .input-group-prepend{width:30%;}
     input[type="text"], label {
-        margin-bottom: 12px; padding: .4em;
+        margin-bottom: 12px; padding: .4em; 
         width: 95%;
-    }
+    }    
 </style>
 <script src="../a00_com/jquery.min.js"></script>
 <script src="../a00_com/popper.min.js"></script>
 <script src="../a00_com/bootstrap.min.js"></script>
-<script type="text/javascript" src="../a00_com/jquery-3.4.1.js"></script>
-<script  src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script type="text/javascript" 
+	src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>	
 <script src="../a00_com/jquery-ui.js"></script>
 <script type="text/javascript">
-/*
-*  # instance 객체 참조 개념.
-*  1.var 참조변수  = new Vue(속성:속성, 메서드:function(){});
-*  2.참조변수를 통한 객체 생성과 객체의 속성에 대한 처리를 확인
-*  3.속성(메서드)
-*  	1) computed:function(){ 함수 내용처리..}
-*  	지정된 값은 함수, 프록시 처리로 속성처럼 종속된 결과값을 개시..
-*
-*	2)method: {메서드 1 명:function(){}, 메서드2명:function(){}}
-*		ps) js는 메서드를 처리할때, 참조변수.메서드명();
-*		vue 에서는 메서드명으로 호출하여 처리한다.
-*/
-
-$(function(){
-
-	var vm = new Vue({
-		el:'.container',
-		data:{point:0},
-		methods:{
-			result:function(){
-				//객체의 가능 함수인 메서드의 처리
-				var pt = Number(this.point);
-				var rs = pt >= 70 ? "합격":"불합격";
-				return rs;
+/* 
+# instance 객체 참조 개념.
+1. var 참조변수 = new Vue(속성:속성, 메서드:function(){});
+2. 참조변수를 통한 객체 생성과 객체의 속성에 대한 처리를 확인한다.
+3. 속성(메서드)
+	1) computed:function(){ 함수 내용 처리..}
+		지정된 값은 함수, 프록시 처리로 속성처럼 종속된 결과값을 캐시..
+	2) method:{메서드1명:function(){},메시드2명:function(){}}
+		ps) js는 메서드를 처리할 때, 참조변수.메서드명();
+		vue에서는 메서드명으로 호출하여 처리한다.
+ 
+ 
+ */
+	$(document).ready(function(){
+		$("h1").html("instance의 메서드 속성 처리");
+		var vm = new Vue({
+			el:".container",
+			data:{point:0},
+			methods:{
+				result:function(){
+					// 객체의 기능 함수인 메서드의 처리..
+					// 현재 입력된 모델데이터 this.속성 값을 기준으로 해당
+					// 메서드를 처리..
+					var pt = Number(this.point);
+					// 조건?true일때:false일때
+					var rs = pt>=70?"합격":"불합격";
+					return rs;
+				}
 			}
-		}
+		});
 	});
-});
 </script>
 
+</head>
 <body>
 <div class="container">
-	<h1></h1>
+    <h1></h1>
 	<table class="table table-hover table-striped">
 		<col width="50%">
 		<col width="50%">
 		<thead class="thead-light">
 			<tr><th>입력값</th><th>합격여부</th></tr>
-		</thead>
-		<tr>
-			<td><input type="text" v-model="point"/></td>
+		</thead>	
+		<tr><td><input type="text" v-model="point"/></td>
 			<td>{{result()}}</td>
 		</tr>
-	</table>
+	</table>       
 </div>
-
 </body>
+
 </html>

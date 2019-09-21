@@ -38,9 +38,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
 <script type="text/javascript">
-/*
+/* 
 # 비동적 처리 예제 진행 순서..
-1. model : 검색할 데이터(name), 진행중여부(isProcessing),
+1. model : 검색할 데이터(name), 진행중여부(isProcessing), 
 	받을 list데이터(contactlist)
 2. watch 함수선언 : 기본 검색 유효성 check와 수행 메서드 호출..
 	1) 모델데이터 중에 검색할 데이터(name)을 관찰..
@@ -49,14 +49,14 @@
     	if (val.length >= 2) {
         this.fetchContacts();
 3. methods를 통해서 정의된 함수 호출
-	1) fetchContacts() 정의
+	1) fetchContacts() 정의 
 		- _.debounce(function(){}, 1/1000)
 		  해당 함수내용이 중복을 해당시간 안에 호출되지 않게 처리 한다.
 		- fetch(url) : fetch api를 통한 해당 서버에 비동기적으로 데이터를 promise로
 			가져오는 처리를 해준다.
 		  fetch(접속할url).then(접속할때 반응을 가져올 함수response )
 		  .then(반응값특정한데이터 json가져올 함수).catch(예외가 발생시처리함수ex)
-
+        
  */
 var vm = new Vue({
     el : '#example',
@@ -65,7 +65,7 @@ var vm = new Vue({
         isProcessing : false,
         contactlist : []
     },
-    //
+    // 
     watch : {
         name : function(val) {
             if (val.length >= 2) {
@@ -76,13 +76,17 @@ var vm = new Vue({
         }
     },
     methods : {
-        fetchContacts : _.debounce(function() {
+        // _.debounce(함수,지연시간);
+    	fetchContacts : _.debounce(function() {
             this.contactlist = [];
             // 접근 하기 시작시 에..isProcessing로 true로 변경 처리
             this.isProcessing = true;
             var url = "http://sample.bmaster.kro.kr/contacts_long/search/"
                  + this.name;
-            var vm = this;
+            var vm = this; // 전체 이 내용을 처리하는 객체
+            // 주로 모델(data)에 있는 속성값을 접근해서 사용할 때,  활용된다.
+            // fetch(서버주소).then( 함수(반응객체){ return 다음then데이터filter})
+            //    then( 함수(param){}  )
             fetch(url)
                 .then(function(response) {
                 	//다음 then에 넘겨줄 데이터 함수 정의.
@@ -92,7 +96,7 @@ var vm = new Vue({
                 	// vm이라는 위에 this로 할당된 Vue 전체 객체의 instance에
                 	// model데이터 설정된 변수에 비동기적으로 받은 데이터를 할당 처리한다.
                     vm.contactlist = json;
-                	// 서버에서 데이터 로딩되었기 때문에 vm.isProcessing = false
+                	// 서버에서 데이터 로딩되었기 때문에 vm.isProcessing = false 
                 	// 로 종료처리..
                     vm.isProcessing = false;
                 }).catch(function(ex) {

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em; 
+        width: 95%;
+    }    
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript" 
+	src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>	
+<script src="../a00_com/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("h1").html("vue 예제").attr("align","center");
+		var vm = new Vue({
+			el:".container",
+			data:{name:"",price:0,cnt:0,tot:0},
+			watch:{
+				price:function(p){
+					console.log("가격변경!!");
+					this.tot=p*this.cnt;
+				},
+				cnt:function(c){
+					console.log("갯수변경!!");
+					this.tot=this.price*c;
+				}
+			}
+		});
+	});
+</script>
+
+</head>
+<body>
+<div class="container">
+    <h1></h1>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">물품</span>
+		</div>
+		<input type="text" v-model="name" class="form-control" placeholder="이름입력"/>
+	</div>    
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">가격</span>
+		</div>
+		<input type="text" v-model="price" class="form-control" placeholder="가격입력"/>
+	</div>    
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">갯수</span>
+		</div>
+		<input type="text" v-model="cnt" class="form-control" placeholder="갯수입력"/>
+	</div> 	
+	<table class="table table-hover table-striped">
+		<col width="25%">
+		<col width="25%">
+		<col width="25%">
+		<col width="25%">
+		<tr><th>구매물품</th><td v-text="name"></td>
+			<th>총계</th><td>{{tot}} 원</td>
+		</tr>
+	</table>       
+</div>
+</body>
+
+</html>

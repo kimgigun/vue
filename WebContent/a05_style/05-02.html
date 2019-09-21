@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-02</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="example">
+	<!-- 
+	1. view단에서 정의 방법..
+		1) inline으로 정의된 style 지정..
+			v-bind:style="모델에서정의한 style"
+		2) 이벤트 처리 : vue의 메서드로 선언 overEvent/outEvent
+	 -->
+  <button id="a" v-bind:style="style1" 
+  	  @mouseover.stop="overEvent" 
+      @mouseout.stop="outEvent">테스트</button>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+	  // style1 로 모델 속성을 선언하되,
+	  //   css의 속성과 속성값은  camel 코드 방식으로 선언하고 있다.
+    style1 : { backgroundColor:"aqua", border:'solid 1px gray', 
+      with:'100px', textAlign:'center' }
+  },
+  methods : {
+    overEvent : function(e) {
+    	// @mouseover.stop="overEvent" view에서 해당 이벤트를
+    	// 통해 overEvent함수를 호출하고,
+    	// this : new Vue()의 instance를 의미하고,
+    	// this.모델속성/this.메서드() 접근하여 활용할 수 있다.
+    	//   this.style1.backgroundColor
+    	//   현재 view객체 하위에 모델로 style1이 있고, 그 style1의
+    	//   속성값을 backgroundColor를 동적으로 변경처리한다..
+      this.style1.backgroundColor = "purple";
+      this.style1.color = "yellow";
+    },
+    outEvent : function(e) {
+      this.style1.backgroundColor = "aqua";
+      this.style1.color = "black";
+    }
+  }
+})
+// exp) table tr  7가지 무지개 색상을 기본 배경색 흰색 검정 글자로 선언했다가.
+//      mouseover했을 때, 해당 글자로 배경색상을 변경하고, mouseout했을
+//      원복 처리하세요..
+</script>
+</body>
+</html>

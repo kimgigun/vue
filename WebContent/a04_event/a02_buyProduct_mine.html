@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em;
+        width: 95%;
+    }
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript" src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<!--
+ex) 아래와 같이 화면을 구성하고 vue를 통하여 이벤트를 처리하세요.
+
+물건명[     ]
+가격  [     ]
+갯수  [     ]
+    [구매] ==> 구매 클릭시 아래와 같이 수행 처리.
+@@@를   @@@원에 @@@개 구매하여
+총비용이 @@@ 원
+
+ -->
+
+<body>
+<div id="ex"  class="container layout1">
+ <p>
+ 	물건명 :
+ 	<input type="text" v-model="nm"/>
+ </p>
+  <p>
+ 	가격 :
+ 	<input type="text" v-model="price"/>
+ </p>
+  <p>
+ 	갯수 :
+ 	<input type="text" v-model="ea"/>
+ </p>
+
+ <input type="button" value="구매" v-on:click="buy"/>
+
+ <br>
+ <br>
+ <br>
+
+ <span v-show="show !='' ">{{show}}</span>
+</div>
+</body>
+
+<script type="text/javascript">
+var vm = new Vue({
+	  el : "#ex",
+	  data : {
+	    nm : '',
+	    price : 0,
+	    ea : 0,
+	    total : 0,
+	    show : ''
+	  },
+	  methods :{
+		  buy : function(e){
+			this.total += Number(this.price*this.ea);
+			this.show = this.nm +'를' +this.price + '원에'+ this.ea +'개 구매하여  총 비용이' + this.total +'원임';
+		  }
+
+	  }
+	})
+</script>
+</html>

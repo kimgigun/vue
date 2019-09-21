@@ -21,33 +21,20 @@
 <script  src="../a00_com/vue.min.js" type="text/javascript"></script>	
 <script src="../a00_com/jquery-ui.js"></script>
 <script type="text/javascript">
-/* 
-# 이벤트 처리..
-1. 기본형식.
-	1) <tag v-on:이벤트명="함수명"
-	해당 이벤트를 통하여 instance에서 선언된 model과
-	methods 안에 정의된 함수를 처리할 수 있다..
- */
 	$(document).ready(function(){
-		$("h1").html("이벤트 처리");
+		$("h1").html("학생 성적").attr("align","center");
+		var model={
+			students:[
+				{name:"홍길동",kor:70,eng:80,math:90},
+				{name:"신길동",kor:80,eng:82,math:94},
+				{name:"마길동",kor:91,eng:81,math:95}
+			]	
+		};
 		var vm = new Vue({
 			el:".container",
-			data:{
-				amount:0,
-				balance:0
-			},
-			methods:{
-				deposit:function(){
-					var amt = Number(this.amount);
-					this.balance+=amt;
-				},
-				withdraw:function(){
-					var amt = Number(this.amount);
-					this.balance-=amt;
-				}
-			}
+			data:model
 		});
-		// ex) 출금 버튼을 클릭시, 금액만큼 차감이되게 처리하세요..
+		
 	});
 </script>
 
@@ -56,19 +43,28 @@
 <div class="container">
     <h1></h1>
 	<table class="table table-hover table-striped">
-		<col width="50%">
-		<col width="50%">
+		<col width="10%">
+		<col width="20%">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+		<col width="10%">
 		<thead class="thead-light">
-			<tr><th>입/출금</th><th>처리</th></tr>
+			<tr><th>번호</th><th>이름</th><th>국어</th>
+				<th>영어</th><th>수학</th>
+				<th>총점</th><th>평균</th></tr>
 		</thead>	
-		<tr><td><input type="text" v-model="amount"/></td>
-			<td><input type="button" value="입금" 
-					v-on:click="deposit"/>
-				<input type="button" value="출금" 
-					v-on:click="withdraw"/>	
-			</td>
+		<tr v-for="(stud,index) in students">
+			<td>{{index+1}}</td>
+			<td>{{stud.name}}</td>
+			<td>{{stud.kor}}</td>
+			<td>{{stud.eng}}</td>
+			<td>{{stud.math}}</td>
+			<td>{{stud.kor+stud.eng+stud.math}}</td>
+			<!-- 숫자.toFixed(소숫점자리수) -->
+			<td>{{((stud.kor+stud.eng+stud.math)/3).toFixed(1)}}</td>
 		</tr>
-		<tr><td colspan="2">총입금액:{{balance}}</td></tr>
 	</table>       
 </div>
 </body>

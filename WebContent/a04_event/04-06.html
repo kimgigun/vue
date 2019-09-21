@@ -32,6 +32,8 @@ var vm = new Vue({
         console.log("Event Phase : ", e.eventPhase);
         console.log("Current Target : ", e.currentTarget);
         console.log("Target : ", e.target);
+        // e.stopPropagation()을 통해서 dom객체에서 포함하고 있는 상위 객체
+        // 이벤트 전달을 막아 준다.
         e.stopPropagation();
     },
     innerClick : function(e) {

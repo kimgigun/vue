@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>번호로 검색</title>
+<style>
+    #list  { width: 400px; border:1px solid black; border-collapse:collapse; }
+    #list td, #list th { border:1px solid black;  text-align:center; }
+    #list > thead > tr { color:yellow; background-color: purple; }
+</style>
+</head>
+<body>
+    <div id="example">
+        <p>
+        번호 : <input type="text" v-model="no" placeholder="13자리로 검색" />
+        </p>
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>번호</th><th>이름</th><th>전화번호</th><th>주소</th>
+                </tr>
+            </thead>
+            <tbody id="contacts" >
+            	<!--  객체가 하나이기에 객체명.속성 -->
+                <tr>
+                    <td>{{contact.no}}</td>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.tel}}</td>
+                    <td>{{contact.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--  진행 중인 데이터를 처리 할 수 있게 해준다. -->
+        <div v-show="isProcessing">조회중</div>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+<script type="text/javascript">
+/* 
+ex0) 
+1567789205798
+http://sample.bmaster.kro.kr/contacts/
+http://sample.bmaster.kro.kr/contacts/1567789205798
+형태로 번호를 입력했을 때, 해당 데이터 list 출력 처리하게 하세요..
+
+ */
+var vm = new Vue({
+    el : '#example',
+    data : {
+        no : 0,
+        isProcessing : false,
+        contact : {}
+    },
+    // 하나의 데이터를 할당해서 처리하기 때문에  객체형태로 선언..
+    watch : {
+        no : function(val) {
+			console.log("검색번호:"+val)  
+			// 데이터 형식이 13자리로 되어 있기에 
+            if (val.length > 12) {
+                this.fetchContacts();
+            } else {
+            	// 초기값을 객체
+                this.contact = {};
+            }
+        }
+    },
+    methods : {
+        fetchContacts : _.debounce(function() {
+            this.contact = {};
+            // 접근 하기 시작시 에..isProcessing로 true로 변경 처리
+            this.isProcessing = true;
+            // 주소 패턴 형식 변경..
+            // http://sample.bmaster.kro.kr/contacts/번호..
+            var url = "http://sample.bmaster.kro.kr/contacts/"
+                 + this.no;
+            console.log("주소:"+url);
+            var vm = this;
+            fetch(url)
+                .then(function(response) {
+                    return response.json()
+                }).then(function(json) {
+                	// for(var pro in json)
+                	// js의 속성값을 확인 한다.
+                	// js에서 넘겨오는 데이터에 대한 형식을 확인 수 있는  구문..
+                	for(var pro in json){
+                		console.log(pro+":"+json[pro]);
+                	}
+                	// 넘겨오는 데이터가 객체({})이기에 현재 객체에 할당할 수 있다.
+                    vm.contact = json;
+                    vm.isProcessing = false;
+                }).catch(function(ex) {
+                    console.log('parsing failed', ex);
+                    vm.contact = {};
+                    vm.isProcessing = false;
+                })
+
+        }, 300)
+    }
+})
+</script>
+</body>
+</html>

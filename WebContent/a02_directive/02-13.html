@@ -6,25 +6,17 @@
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-
 <div id="example">
     <input type="text" v-model="num" /><br />
-    <!-- 결과값을 함수명으로 호출..computed:{함수명:function (){}}-->
+    <!-- 결과값을 함수명으로 호출..computed:{함수명:function(){}} -->
     1부터 입력된 수까지의 합 : <span v-text="sum"></span>
+    <!-- ex) 입력할 때, 결과에 아래 형식으로 출력되게 
+    	computed 함수를 활용하세요.
+     [  ]  * [   ] 
+     결과  @@ * @@ = @@
+     
+     -->
 </div>
-
-<!-- ex
-    	[] + []
-   	결과 @@ + @@ = @@
-
-    -->
-<div id="ex2">
-	<input type="text" v-model ="num1"/><br>
-	<input type="text" v-model ="num2"/><br>
-	입력된 값의 합
-	<span v-text="sum"></span>
-</div>
-
 <script type="text/javascript">
 //1부터 입력된 수까지의 합구하기
 var vmSum = new Vue({
@@ -37,19 +29,6 @@ var vmSum = new Vue({
             return ((1+n) * n) / 2;
         }
     }
-});
-
-var vue = new Vue({
-	el:"#ex2",
-	data:{num1:"",num2:""},
-	computed:{
-		sum:function(){
-			var d = Number(this.num1)+Number(this.num2);
-			var reData;
-			d ?  reData = d : reData = "숫자가 올바르지 않음";
-			return reData;
-		}
-	}
 });
 </script>
 </body>

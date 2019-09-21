@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="show">
+	<h2 v-text="login"></h2>
+	<table border>
+		<tr><th v-text="id"></th>
+			<td><input type="text" 
+				v-bind:placeholder="loginMsg"/></td></tr>
+		<tr><th v-text="pass"></th>
+			<td><input type="text" 
+				v-bind:placeholder="passMsg"/></td></tr>
+		<tr><td colspan="2">
+				<input type="button" v-bind:value="login"/>
+			</td></tr>			
+	</table>
+</div>
+</body>
+<script type="text/javascript" 
+	src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+// ex)                    로그인
+//      table   아이디 : [아이디입력하세요 ]
+//      table   패스워드 : [패스워드입력하세요 ]
+//               [로그인]-버튼
+//    label(title) 내용과 value를 model데이터로 설정하고, 뷰의 directive
+//    이용하여 출력 처리하세요..
+	var md = {  login:"로그인", 
+				id:"아이디",
+				loginMsg:"아이디 입력하세요",
+				pass:"패스워드",
+				passMsg:"패스워드 입력하세요"};
+	var vm = new Vue({
+		el:"#show",
+		data:md
+	});			
+				
+</script>
+</html>

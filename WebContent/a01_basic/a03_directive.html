@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="show">
+		<h1 v-text="greet01"></h1>
+		<p v-html="greet02"></p>
+	</div>
+</body>
+<script type="text/javascript" 
+	src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+	// 모델데이터
+	var md = { greet01:"안녕하세요!!", greet02:"<h2>즐거운 점심시간!<h2>"};
+	var vm = new Vue({
+		el:"#show",
+		data:md
+	});
+
+/* 
+# vue에서 사용하는 디렉티브
+1. 단방향 디렉티브
+	1) v-text : text-node부분에 렌더링 없이 model데이터를 처리할 때,
+		속성값을 설정하여 처리한다. ex) <tag v-text="model속성">
+	2) v-html : text-node부분에 랜더링을 하여 html을 처리한 model데이터를
+		출력하게 하는 속성을 말한다. ex) <tag v-html="랜더링할html model데이터속성">
+	3) v-bind : dom객체(tag)에 속성값을 model데이터에서 가져와 설정할 때,
+		활용된다. ex) <img v-bind:src="모델에 있는 데이터 속성">
+		v-bind:속성  ==>  :속성 으로 간략하게 생략할 수 있다.
+2. 양방향 디렉티브
+ */
+
+</script>
+
+</html>

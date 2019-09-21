@@ -6,27 +6,26 @@
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-
-
-<!--
-
- # 기타디렉티브 처리..
- 1.v-pre :컴파일을 수행하지 않고 , directive 의 mustache 그대로 보여준다. 컴파일 변수 선언과
-  테스트용을 활용된다.
- 2.v-once: 한번만 랜더링으로 초기값으로 출력하고, v-model과 연동하더라도 변경이 일어나지 않는다.
- 3.계산형 속성:new Vue({
- 	computed:{함수명:function(){}}
- });
- 해당 함수명을 통해 계산된 return
+<!-- 
+# 기타 디렉티브 처리..
+1. v-pre:컴파일을 수행하지 않고, directive의 mustache 
+	그대로 보여준다. 컴파일 변수 선언과 테스트용을 활용된다.
+2. v-once: 한번만 랜더링으로 초기값으로 출력하고, v-model과
+	연동하더라도 변경이 일어나지 않는다.
+3. 계산형 속성:
+	new Vue({
+		computed:{함수명:function(){}}
+	});
+	해당 함수명을 통해 계산된 결과값을 return 받아서 처리할 때 활용된다.
+	
  -->
- 
 <div id="example">
     <span v-once>{{message}}</span>
 </div>
 <script type="text/javascript">
 var vm = new Vue({
     el : "#example",
-    data : {
+    data : { 
         message : "Hello World"
     }
 })

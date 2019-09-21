@@ -5,35 +5,33 @@
   <title>02-04</title>
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
-<body>
-
-<!--
+<!-- 
 # 양방향 디렉티브
-1. v-model : 해당 속성에 모델 값을 매핑시키면, 이와 연결되어 있는 모든
+1. v-model : 해당 속성에 모델 값을 매핑시키면, 이와 연결되어 있는 모든  
 	model데이터를 같은 내용을 출력 처리한다.
-	1) mapping 할 속성   <tag v-html="v-model로 선언된 모델 데이터">
+	1) mapping 할 속성   <tag v-html="v-model로 선언된 모델 데이터">	
 ex) 연습예제
 	로그인
 ID : [     ]
 PASS : [     ]
-입력된 아이디: span @@@
+입력된 아이디: span @@@ 
 입력된 패스워드 : span @@@
-
+	
  -->
+<body>
   <div id="simple">
     <input type="text" v-model="name" placeholder="이름을 입력하세요" />
-    <input type="text" v-model="name2" placeholder="이름을 입력하세요" />
-    <input type="text" v-model="name3" placeholder="이름을 입력하세요" />
     <br />
     입력된 이름 : <h2 v-html="name"></h2>
-    입력된 이름 : <h2 v-html="name"></h2>
-    입력된 이름 : <h2 v-html="name"></h2>
+    입력된 이름 : <h3 v-html="name"></h3>
+    입력된 이름 : <h4 v-html="name"></h4>
   </div>
   <script type="text/javascript">
     var twoway = new Vue({
       el : '#simple',
+      // 모델 데이터는 일반적으로 출력할 default로 설정한다.
       data : {
-          name : ''
+          name : '초기값'
       }
     })
   </script>

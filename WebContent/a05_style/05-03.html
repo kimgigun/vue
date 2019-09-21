@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-03</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="example">
+	<!-- 
+	 1. 기본 style 선언 방식
+	 style="background-color: orange;"
+	 2. vue에서 선언 방식 : json{속성:속성값} camel 형식
+	 :style="{속성:모델객체.모델속성,}"
+	 -->
+  <div 
+    :style="{ backgroundColor: a.bc, 
+    		border:a.bd, 
+    		width:a.w+'px', height:a.h+'px' }">
+  </div>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+    a : { bc:"yellow", bd:'solid 1px gray', w:200, h:100 }
+  }
+})
+</script>
+</body>
+</html>

@@ -12,13 +12,21 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
+
+<!-- 
+ex) 화살표의 키코드값을 확인 곰발바닥이 상하좌우로 이동하는 이벤트 처리하세요..
+
+@keyup.키코드값 :
+
+ -->
 <div id="example" v-on:contextmenu.prevent="ctxStop"
     @mouseup.left="leftMouse" @mouseup.right="rightMouse">
     <div>
       Left Click : 왼쪽으로<br /> 
       Right Click : 오른쪽으로
     </div>
-    <img src="images/foot.jpg" v-bind:style="{ position:'absolute', left: pos.left + 'px', top:pos.top +'px' }" />
+    <img src="images/foot.jpg" 
+    v-bind:style="{ position:'absolute', left: pos.left + 'px', top:pos.top +'px' }" />
 </div>
 <script type="text/javascript">
 var vm = new Vue({
