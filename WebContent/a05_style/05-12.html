@@ -6,11 +6,11 @@
   <style>
     * {  box-sizing: border-box;  }
     ul {  margin: 0; padding: 0; }
-    ul li { 
+    ul li {
         cursor: pointer; position: relative; padding: 8px 8px 8px 40px;
         background: #eee; font-size: 14px;  transition: 0.2s;
         -webkit-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;  
+        -ms-user-select: none; user-select: none;
     }
     ul li:hover {  background: #ddd;  }
     ul li.checked {
@@ -18,7 +18,7 @@
     }
     ul li.checked::before {
         content: ''; position: absolute; border-color: #fff;
-        border-style: solid; border-width: 0px 1px 1px 0px; 
+        border-style: solid; border-width: 0px 1px 1px 0px;
         top: 10px; left: 16px;  transform: rotate(45deg);
         height: 8px; width: 8px;
     }
@@ -41,20 +41,20 @@
         float: left; font-size: 16px;
     }
     .addbutton {
-        padding: 10px; width: 25%; height:35px; background: #d9d9d9; 
+        padding: 10px; width: 25%; height:35px; background: #d9d9d9;
         color: #555; float: left; text-align: center;
         font-size: 13px; cursor: pointer; transition: 0.3s;
     }
     .addbutton:hover { background-color: #bbb; }
     .completed { text-decoration:none; }
   </style>
-  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>  
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-<div id="todolistapp">
+<!-- <div id="todolistapp">
     <div id="header" class="header">
         <h2>Todo List App</h2>
-        <input class="input" type="text" id="task" v-model.trim="todo" 
+        <input class="input" type="text" id="task" v-model.trim="todo"
             placeholder="입력 후 엔터!" v-on:keyup.enter="addTodo">
         <span class="addbutton" v-on:click="addTodo">추 가</span>
     </div>
@@ -98,6 +98,60 @@ var vm = new Vue({
         }
     }
 })
+</script>-->
+
+
+<div id="ex">
+	<div id="header" class="header">
+		<h2>todo app</h2>
+		<input type="text" class="input" v-model.trim="todo" @keyup.enter="addTodo"/>
+		<span class="addbutton" v-on:click="addTodo">추 가</span>
+	</div>
+
+	<ul id="todolist" >
+		<li v-for="(a, index ) in todoList" v-bind:class="check(a.do)" @click.stop="chech(a.index)">
+			<span>{{a.todo}}</span>
+			<span v-if="check(a.index)">완료</span>
+			<span @cliclk="close"></span>
+		</li>
+	</ul>
+
+</div>
+
+<script>
+
+	var v = new Vue({
+		el: '#ex',
+		data : {
+			todo:'',
+			todoList:[
+				{todo:'hi',check:false},
+				{todo:'hi1',check:false},
+				{todo:'hi2',check:false}
+			]
+		},
+		methods :{
+
+			addTodo : function(){
+				if(this.todo != ''){
+					this.todoList.push({todo:this.todo, check:false});
+				}
+			},
+
+			delTodo : function(){
+
+			},
+			close : function(){
+
+			},
+			check : function(index){
+				if(index ji)
+				if(this.todoList[index].check){
+					return false;
+				}
+			}
+		}
+	});
 </script>
 </body>
 </html>

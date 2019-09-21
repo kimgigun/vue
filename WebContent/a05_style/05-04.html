@@ -7,8 +7,21 @@
 </head>
 <body>
 <div id="example">
+	<!-- 
+	# vue에서 inline형식으로 여러개의 모델 style을 적용할 때..
+	1. 기본 css 인라인 선언 :  class="클래스1 클래스2"
+	2. vue에서 선언: 모든 선언은 vue의 model에서 선언한 내용을 가져온다.
+		1) model데이터로 선언 - data : { myColor : { backgroundColor:'purple', color:'yellow' },
+		2) v-bind:style="[model선언객체1, model선언객체2]"
+	 -->
     <button id="btn1" v-bind:style="[myColor,myLayout]">버튼1</button>
 </div>
+<!-- 
+ex1) model로  style1 배경색상과  style2 글자색상을 선언하고,
+	이 두가지가 적용된 <input type="text">로 처리!!
+ex2) 위 내용에 checkbox,  2개를 추가하여 check되었을 때 추가하여
+	적용과 미적용되게 처리하세요.	
+ -->
 <script type="text/javascript">
 var vm = new Vue({
   el : "#example",

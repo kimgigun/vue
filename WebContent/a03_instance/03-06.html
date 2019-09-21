@@ -15,7 +15,7 @@
 /*
 # 인스턴스 라이프 사이클
 1. 메인 라이프 사이클
-	- creation(생성), mounting(로딩), 
+	- creation(생성), mounting(로딩),
 	  updating(수정), destruction(소멸)
 2. 세부 라이프 사이클
 	- beforeMount: 가상 dom이 랜더링, 패치되기 전에 데이터 변경 호출.
@@ -29,10 +29,12 @@ var vm = new Vue({
     beforeUpdate : function() {
         console.log("before update")
         console.log(this.x);
+        console.log(this.y);
     },
     updated : function() {
         console.log("update")
         console.log(this.x);
+        console.log(this.y);
     },
     computed : {
         sum : function() {

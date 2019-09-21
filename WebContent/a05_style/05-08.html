@@ -11,13 +11,36 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
+<!-- 
+# component에서 css의 적용
+1. css class 선언..
+	.boxcolor, .center
+2. model를 선언..
+	1) 	boxstyle : { boxcolor : true }
+		위에 class에 선언 boxcolor를 true로 처리한 boxstyle를
+		모델로 선언처리.
+3. view단 처리..
+	1) component에 대한 선언..
+		- component이름 을 template와 매핑해서 선언한다..
+ ***2) component의 호출 처리..
+ 		<컴포넌트이름 v-bind:class="model에서 정의한 속성"
+ -->
+<!--ex) h2에  border를 클래스 선언 1px solid blue 하고,
+	component로 새로운 화면에 처리하고, model를 매핑하게 처리하세요. --> 
 <div id="example">
     <center-box v-bind:class="boxstyle"></center-box>
+    <!-- <call></call> -->
 </div>
 <script type="text/javascript">
+
 Vue.component('center-box', {
     template : '<div class="center">중앙에 위치</div>'
 })
+/*
+Vue.component("call",{
+	template:"<h2>안녕하세요</h2>"	
+})
+*/
 var vm = new Vue({
     el : "#example",
     data : {

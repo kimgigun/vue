@@ -7,17 +7,19 @@
     .set1 { background-color: aqua; color:purple; }
     .set2 { text-align:center; width:120px; }
     .set3 { border:sandybrown dashed 1px; }
+    .style1{background-color: purple; }
+    .style2{color: red; }
   </style>
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-<div id="example">
-<!-- 
+<!--<div id="example">
+
 	순서1. class 정의   .set{ background-color: aqua; color:purple; }
 	순서2. model 에서 vue 에 사용하게될 model 적용 여부에 대해서 선언한다.
 	순서3. View 에서 클래스로 선언한 부분과 model 부분과 mapping 할수 있다.
 
- -->
+
     <button id="btn1" v-bind:class="{ set1:s1, set2:s2, set3:s3 }">버튼1</button>
     <p>
         <input type="checkbox" v-model="s1" value="true" />set1 디자인<br/>
@@ -25,10 +27,36 @@
         <input type="checkbox" v-model="s3" value="true" />set3 디자인<br/>
     </P>
 </div>
-<script type="text/javascript">
+
+ -->
+
+<!-- <script type="text/javascript">
 var vm = new Vue({
   el : "#example",
   data : { s1 : false, s2 : false, s3 : false }
+})
+</script> -->
+
+
+
+
+
+<!--ex2
+
+ style1, style2 배경색상, 글자색상 적용하여 두가지가 적용된  input 으로 처리하고
+ 체크박스 2개 추가 하여 check 되었을때 미적용되었을때 구현
+ -->
+
+<div id="ex" v-bind:class="{style1:t1}">
+	<input type="checkbox" v-model="t1" value="true"/>배경변경<br>
+	<input type="checkbox" v-model="t2" value="true"/>글자변경
+	<input type="text" v-bind:class="{style2:t2}"/>
+</div>
+
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#ex",
+  data : { t1 : false, t2 : false}
 })
 </script>
 </body>
