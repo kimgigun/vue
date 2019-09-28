@@ -30,13 +30,13 @@ Vue.component('child-component', {
 <!-- parent Component 시작 -->
 <template id="parent-template">
     <div>
-        <child-component v-for="s in buttons" v-bind:button-info="s" 
-            v-on:timeclick="timeclickEvent">
+        <child-component v-for="s in buttons" v-bind:button-info="s" v-on:timeclick="timeclickEvent">
         </child-component>
         <hr />
         <div>{{ msg }}</div>
     </div>
 </template>
+
 <script type="text/javascript">
 Vue.component('parent-component', {
     template : '#parent-template',

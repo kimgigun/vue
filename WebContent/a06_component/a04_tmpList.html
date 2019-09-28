@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>06-17</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<style>
+#list  { width: 400px; border:1px solid black; border-collapse:collapse; }
+#list td, #list th { border:1px solid black;  text-align:center; }
+#list > thead > tr { color:yellow; background-color: purple; }
+</style>
+<template id="listTemplate">
+    <div>
+    <table id="list">
+        <thead>
+            <tr>
+                <th>번호</th><th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+        </thead>
+        <tbody id="students" >
+            <tr v-for="stud in students">
+                <td>{{stud.no}}</td>
+                <td>{{stud.name}}</td>
+                <td>{{stud.kor}}</td>
+                <td>{{stud.eng}}</td>
+                <td>{{stud.math}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</template>
+<!--
+
+
+ -->
+<script type="text/javascript">
+Vue.component('students-comp', {
+    template : '#listTemplate',
+    props : [ 'students' ]    
+})
+</script>
+<body>
+    <div id="app">
+        <h1>학생 성적</h1>
+        <hr />
+        <h3>1반</h3>
+        <students-comp :students="slist1"></students-comp>
+        <h3>2반</h3>
+        <students-comp :students="slist2"></students-comp>
+    </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true
+var vm = new Vue({
+    el : "#app",
+    data : {
+        slist1 : [
+            {"no":1,"name":"홍길동","kor":70,"eng":80,"math":90 },
+            {"no":2,"name":"김길동","kor":90,"eng":90,"math":90 },
+            {"no":3,"name":"신길동","kor":90,"eng":85,"math":95 }
+        ],
+        slist2 : [
+            {"no":1,"name":"오길동","kor":70,"eng":80,"math":90 },
+            {"no":2,"name":"마길동","kor":90,"eng":90,"math":90 },
+            {"no":3,"name":"천길동","kor":90,"eng":85,"math":95 }
+        ]        
+        
+    }
+})
+// ex) 학생 성적 
+//     no   이름     국어   영어   수학
+//      1   홍길동   70   80   90
+//      2   김길동   70   80   90
+//      3   신길동   70   80   90
+
+
+
+</script>
+</html>

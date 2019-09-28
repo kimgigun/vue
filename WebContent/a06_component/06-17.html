@@ -19,6 +19,7 @@
             </tr>
         </thead>
         <tbody id="contacts" >
+        	<!--  넘겨온 객체형배열  contacts를 반복문을 통해서 리스트 처리.. -->
             <tr v-for="contact in contacts">
                 <td>{{contact.no}}</td>
                 <td>{{contact.name}}</td>
@@ -29,6 +30,10 @@
     </table>
     </div>
 </template>
+<!--
+
+
+ -->
 <script type="text/javascript">
 Vue.component('contactlist-component', {
     template : '#listTemplate',
@@ -40,9 +45,15 @@ Vue.component('contactlist-component', {
         <h1>예방 접종</h1>
         <hr />
         <h3>1차 대상자 : 5월 1~3일</h3>
+        <!-- 
+              부모 컴포넌트명 : contactlist-component
+              속성 : contacts 속성값으로 model데이터 list1/list
+         -->
         <contactlist-component :contacts="list1"></contactlist-component>
         <h3>2차 대상자 : 5월 13~15일</h3>
         <contactlist-component :contacts="list2"></contactlist-component>
+        <h3>추가 대상자</h3>
+        <contactlist-component :contacts="list3"></contactlist-component>
     </div>
 </body>
 <script type="text/javascript">
@@ -58,9 +69,22 @@ var vm = new Vue({
         list2 : [
             {"no":82,"name":"Zenon Howard","tel":"010-3456-8281","address":"서울시"},
             {"no":81,"name":"Kylie Allen","tel":"010-3456-8280","address":"서울시"}
-        ]
+        ],
+        list3 : [
+            {"no":80,"name":"홍길동","tel":"010-3456-8281","address":"서울시"},
+            {"no":79,"name":"김길동","tel":"010-3456-8280","address":"서울시"},
+            {"no":78,"name":"신길동","tel":"010-3456-8280","address":"서울시"}
+        ]        
+        
     }
 })
+// ex) 학생 성적 
+//     no   이름     국어   영어   수학
+//      1   홍길동   70   80   90
+//      2   김길동   70   80   90
+//      3   신길동   70   80   90
+
+
 
 </script>
 </html>

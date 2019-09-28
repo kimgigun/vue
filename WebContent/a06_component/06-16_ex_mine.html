@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-16</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<template id="listTemplate">
+	<tr>
+	   	<td>{{p[0]}}</td>
+	   	<td>{{p[1]}}</td>
+	   	<td>{{p[2]}}</td>
+   	</tr>
+</template>
+<script type="text/javascript">
+debugger;
+Vue.component('list-component', {
+    template : '#listTemplate',
+    props : {
+        message : { type:String, default:'값 없음' },
+        p : {
+            type:Array,
+            default: function() {
+                return ['미정'];
+            }
+        }
+    }
+})
+</script>
+<body>
+<div id="app"><!-- 이거 왜 역전됨??  -->
+ 	<table>
+ 		<thead>
+	 		<tr>
+	 			<th>물건</th>
+	 			<th>가격</th>
+	 			<th>갯수</th>
+	 		</tr>
+ 		</thead>
+ 		<tbody>
+				<list-component message="물건명"
+				      :p="['사과', '1000','1']"></list-component>
+				<list-component message="가격"
+				      :p="['딸기', '2000','3']"></list-component>
+				<list-component message="갯수"
+		            :p="['복숭아',2500,3]"></list-component>
+ 		</tbody>
+ 	</table>
+
+</div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var vm = new Vue({
+    el : "#app"
+})
+</script>
+</html>

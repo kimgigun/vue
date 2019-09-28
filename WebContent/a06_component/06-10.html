@@ -32,6 +32,7 @@ ex) [현재 시간 확인] 2019년 @@월 @@일 @@시 @@분 @@초
 Vue.component('time-component', {
     template : '#timeTemplate',
     data : function() {
+    	// component는 viewmode과 달리 model을 객체형식을 return 하여야 한다.
         return { nowTS : 0 };
     },
     methods : {

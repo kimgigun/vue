@@ -6,7 +6,7 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <template id="listTemplate">
-    <li>{{message}}-{{count}}</li>
+    <li>{{message}} - {{count}}</li>
 </template>
 <script type="text/javascript">
 Vue.component('list-component', {
@@ -30,7 +30,9 @@ Vue.component('list-component', {
 <body>
 <div id="app">
     <ul>
-        <list-component message="Hello" v-bind:count="100"></list-component>
+    	<!-- 여러개의 속성값을 지정  props:[속성1,속성2] -->
+        <list-component message="Hello" 
+        				v-bind:count="100"></list-component>
         <list-component message="씬짜오" :count="21"></list-component>
         <list-component message="니하오마"></list-component>
         <list-component v-bind:count="1000"></list-component>

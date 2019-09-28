@@ -38,8 +38,10 @@ var eventBus = new Vue();
 </style>
 <template id="input-template">
     <div>
-        <input class="input" type="text" id="task" v-model.trim="todo" 
-            placeholder="입력 후 엔터!" v-on:keyup.enter="addTodo">
+        <input class="input" type="text" id="task" 
+        	v-model.trim="todo" 
+            placeholder="입력 후 엔터!" 
+            v-on:keyup.enter="addTodo">
         <span class="addbutton" v-on:click="addTodo">추 가</span>
     </div>    
 </template>
@@ -51,6 +53,8 @@ Vue.component('input-component', {
     },
     methods : {
         addTodo : function() {
+        	// 이벤트버스에 add-todo라는 이름으로 현재 
+        	//  모델데이터 넘겨준다..
             eventBus.$emit('add-todo', this.todo);
             this.todo = "";
         }
@@ -99,6 +103,10 @@ ul li.checked::before {
 Vue.component('list-component', {
     template : '#list-template',
     created : function() {
+    	// Vue 컴포넌트의 life cycle중 생성시,
+    	// 바로 넘겨준 이벤트 버스를 확인하고,  addTodo함수에
+    	// 데이터를 처리..
+    	
          eventBus.$on('add-todo', this.addTodo);
     },
     data : function() {

@@ -43,7 +43,8 @@ Vue.component('contactlist-component', {
 <!-- search-component 시작 -->
 <template id="searchTemplate">
     <p>
-        이름 : <input type="text" v-model.trim="name" :placeholder="placeholder"
+        이름 : <input type="text" v-model.trim="name" 
+        		:placeholder="placeholder"
                 @keyup.enter="keyupEvent" />
     </p>
 </template>
@@ -58,6 +59,8 @@ Vue.component('search-component', {
         keyupEvent : function(e) {
             var val = e.target.value;
             if (val.length >= 2) {
+            	// this.$emit('search', val);
+            	// bus에 search라는 이름을 검색할 데이터 넘긴다.
                 this.$emit('search', val);
             } else {
                 this.$emit('search', '');
@@ -68,9 +71,26 @@ Vue.component('search-component', {
 </script>
 <!-- search-component 끝 -->
 <!-- searchcontact-component 시작 -->
+
 <template id="searchcontactTemplate">
     <div>
-        <search-component placeholder="두글자 이상 입력후 엔터!" v-on:search="searchEvent"></search-component>
+    <!-- 
+    1. 형제 관계에 있는 component가 나타난다..
+    	1) search-component
+    	2) contactlist-component
+    2. 형제 관계에서 데이터 전달 방식 ? bus
+    3. bus  전달 방식  $.emit, $.on  데이터전달/받기 처리..	
+    
+     -->
+    	<!-- 
+    	$.emit 이벤명과 값을 넘김
+    		v-on:이벤트
+    	  검색 키워드 searchEvent 에 전달..
+    	  
+    	 -->
+        <search-component placeholder="두글자 이상 입력후 엔터!" 
+        	v-on:search="searchEvent"></search-component>
+        <!--  contactlist라는 받은 json데이터를 속성 contacts에 할당..-->	
         <contactlist-component v-bind:contacts="contactlist"></contactlist-component>
         <div v-show="isProcessing === true">조회중</div>
     </div>
@@ -80,11 +100,15 @@ Vue.component('search-contact-component', {
     template : '#searchcontactTemplate',
     data : function() {
         return {
+        	// 전체 list형 데이터 []
+        	// 검색중일 때, 출력 여부 
             contactlist : [],
             isProcessing : false
         }
     },
     methods : {
+    	// 메서드 정의  공백일 아닐 때, 하위에 정의 된 메서드 fetchContacts
+    	// 에  매개변수로 넘겨온 값 name을 넘긴다..
         searchEvent : function(name) {
             if (name == '') 
                 this.contactlist = [];
@@ -94,12 +118,15 @@ Vue.component('search-contact-component', {
         fetchContacts : _.debounce(function(name) {
             this.contactlist = [];
             this.isProcessing = true;
+            // http://sample.bmaster.kro.kr/contacts_long/search/ab
             var url = "http://sample.bmaster.kro.kr/contacts_long/search/" + name;
             var vm = this;
             fetch(url)
                 .then(function(response) {
                     return response.json()
                 }).then(function(json) {
+                	// 받은 json데이터를 model에 있는 contactlist로 할당..
+                	// contactlist
                     vm.contactlist = json;
                     vm.isProcessing = false;
                 }).catch(function(ex) {
